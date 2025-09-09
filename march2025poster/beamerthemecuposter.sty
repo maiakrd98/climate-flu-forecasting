@@ -1,0 +1,141 @@
+\ProvidesPackage{beamerthemecuposter} % this style was created by David Vilar, modified by Maia Richards-Dinger
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% custom colors
+\definecolor{i6blue}{cmyk}{1,0.305,0,0.06}
+%\definecolor{B1}{HTML}{6C9E86}
+\definecolor{B1}{RGB}{81,110,106}
+\definecolor{i6bluedark}{rgb}{0.0156,0.2578,0.5625}
+\definecolor{i6colorscheme1}{HTML}{FF6518}  % e.g. for block title
+\definecolor{i6colorblockbg}{RGB}{27, 77, 15}
+\definecolor{i6colorblockfg}{RGB}{255,255,255}
+\definecolor{i6colorscheme2}{HTML}{000000}  % e.g. title in headline
+\definecolor{i6colorscheme3}{RGB}{235,235,235}  % e.g. for poster ground
+\definecolor{i6colorscheme4}{HTML}{000000}
+\definecolor{i6colorschemeHeadline}{RGB}{27, 77, 15}  % for headline bg
+\definecolor{i6colorschemeFootline}{RGB}{27, 77, 15}  % for headline bg
+
+% headline colors and fonts
+\setbeamercolor{headline}{fg=white,bg=i6colorschemeHeadline}
+\setbeamercolor{title in headline}{fg=white}
+\setbeamercolor{author in headline}{fg=white}
+\setbeamercolor{institute in headline}{fg=white}
+\setbeamercolor{logo in headline}{fg=black,bg=lightgray}
+\setbeamercolor{separation line}{bg=i6colorblockbg}
+
+% footline colors and fonts
+\setbeamercolor{footline}{fg=white,bg=i6colorschemeHeadline}
+\setbeamerfont{footline}{size=\normalsize}
+
+% body colors and fonts
+\setbeamercolor*{normal text}{fg=black,bg=i6colorscheme3}
+
+% block environment
+\setbeamercolor*{block body}{bg=white,fg=black}
+\setbeamercolor*{block title}{fg=i6colorblockfg,bg=i6colorblockbg}
+\setbeamerfont{block title}{size=\large,series=\bf}
+
+% example environment
+\setbeamercolor*{example title}{fg=white,bg=i6colorscheme1}
+\setbeamerfont{example title}{size=\large,series=\bf}
+
+\setbeamercolor{alerted text}{fg=B1}
+
+\setbeamertemplate{itemize items}{\includegraphics[height=1cm]{sections/images/background.png}}
+%\setbeamertemplate{itemize items}{\includegraphics[height=0.6cm]{sections/images/icon_filled.png}}
+%\setbeamertemplate{itemize items}{\includegraphics[height=0.6cm]{sections/images/deciduous_tree.png}}
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[leftskip=1cm,colsep*=.75ex]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,sep=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{headline}{
+  \leavevmode
+  
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{columns}[T]
+      %\begin{column}{.02\paperwidth}
+      %\end{column}
+      %\begin{column}{.07\paperwidth}
+      %  \begin{center}
+          %\includegraphics[width=.6\linewidth]{logos/i6-hks44}
+      %  \end{center}
+      %  \vskip1ex
+      %\end{column}
+      \begin{column}{.1\paperwidth}
+      	\vskip0.6cm
+      	\hspace{1.18in}
+      	%\includegraphics[scale=0.12]{NSF.png}
+      	%\vskip1.5cm
+      \end{column}
+      \begin{column}{.81\paperwidth}
+        \vskip4ex
+        \raggedleft
+        \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[5ex]}
+        \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[2ex]}
+        %\usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}
+      \end{column}
+      \begin{column}{.1\paperwidth}
+        \vskip0.3cm
+          \hspace{0.6in}
+          %\vspace{-0.4in}
+          \includegraphics[scale=.25]{sections/images/cu_logo.png}
+        %\vskip1.5cm
+      \end{column}
+      \begin{column}{.03\paperwidth}
+      \end{column}
+    \end{columns} \vspace{-3em}
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%changing color of bullets
+\setbeamercolor{structure}{fg = B1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{footline} \hfill \hfill Mail: \texttt{maia.richards-dinger@colorado.edu} 
+    %Department of Mathematics - University of Wisconsin--La Crosse - La Crosse, WI \hfill Mail: \texttt{\{le.thon,rallen\}@uwlax.edu} \hfill WWW: \texttt{http://www.uwlax.edu/faculty/allen/}
+    \vskip1ex
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<all>
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "poster"
+%%% TeX-PDF-mode: t
+%%% End:

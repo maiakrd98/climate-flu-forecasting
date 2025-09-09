@@ -1,0 +1,79 @@
+\documentclass[final,t]{beamer}
+\mode<presentation>{
+    \usetheme{cuposter}
+}
+
+% additional settings
+\setbeamerfont{itemize}{size=\normalsize}
+\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamerfont{enumerate}{size=\normalsize}
+\setbeamerfont{enumerate/enumerate body}{size=\normalsize}
+\setbeamerfont{enumerate/enumerate subbody}{size=\normalsize}
+\beamertemplategridbackground[1.27cm]	% Display a grid to help align images
+
+% additional packages
+\usepackage{amsmath,amsthm, amssymb, latexsym}
+\usepackage{cancel}
+\usepackage{dsfont}
+\usepackage{mathdots}
+\usepackage{exscale}
+\usepackage{booktabs, array}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{multirow}
+\usepackage[orientation=landscape,size=custom,width=101.6,height=81.28,scale=1.28]{beamerposter}
+\usepackage{tikz}
+\tikzset{mynode/.style={inner sep=0pt,outer sep=0pt}}
+\tikzset{invisible/.style={minimum width=0mm,inner sep=0mm,outer sep=0mm}}
+
+
+\usetikzlibrary{arrows,positioning}
+\tikzstyle{b} = [rectangle, draw, node distance=2.5cm, text width=2em, text centered, rounded corners, minimum height=2em, thick]
+\tikzstyle{l} = [draw, -latex',thick]
+
+\tikzset{invisible/.style={minimum width=0mm,inner sep=0mm,outer sep=0mm}}
+\usetikzlibrary{arrows, automata, positioning, calc}
+
+
+%-------------------------------------------------------------------------------------------------
+% Frame separations per columns
+%-------------------------------------------------------------------------------------------------
+\def\colonesep{2ex}
+\def\coltwosep{.3ex}
+\def\colthreesep{1.3ex}
+\arraycolsep=20pt
+
+%-------------------------------------------------------------------------------------------------
+% Symbols
+%-------------------------------------------------------------------------------------------------
+\newcommand{\C}{\mathds{C}}
+\newcommand{\D}{\mathds{D}}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\R}{\mathds{R}}
+
+\title{\huge Flu Forecasting using Climate Data and Bayesian Hierarchical Modeling}
+\author[]{\Large Maia Richards-Dinger$^1$ and Dr. Stephen Kissler$^2$ \\
+\small$^1$CU Boulder - Applied Math Department, $^2$CU Computer Science Department}
+
+%\institute[]{Department of Mathematics, Department of Biology, University of Wisconsin-La Crosse}
+%\date[Aug. 10 , 2019]{Aug. 31 , 2019}
+
+%-------------------------------------------------------------------------------------------------
+\begin{document}
+\begin{frame}{}
+	\begin{columns}[t]
+		\begin{column}{.31\linewidth}
+			\input{./sections/first_column.tex}
+		\end{column}
+        
+		\begin{column}{.3\linewidth}
+			\input{./sections/second_column.tex}
+		\end{column}
+		
+		\begin{column}{.3\linewidth}
+			\input{./sections/third_column.tex} 
+		\end{column}
+	\end{columns}   
+\end{frame}
+\end{document}
