@@ -1,7 +1,7 @@
 # Fitting a piecewise linear function to flu incidence and looking for correlations
 # of parameters with weather and population data
 
-# to recover data after crash: data <- read.csv("flu_data.csv")
+# to recover data after crash: data <- read.csv("../data/flu_data.csv")
 
 library(segmented)
 library(tidycensus)
@@ -25,13 +25,13 @@ latitudes <- append(latitudes, 18.2208) # add Puerto Rico
 latitudes <- append(latitudes, 38.9072, after=8) # add DC
 
 # percent visits due to ILI
-ILI <- read.csv("ILINetByState.csv", header=TRUE, skip = 1) 
+ILI <- read.csv("../data/ILINetByState.csv", header=TRUE, skip = 1) 
 # percent of flu tests positive post 2015
-PercentPos1 <- read.csv("PercentPosByState(post2016).csv", header=TRUE, skip = 1) 
+PercentPos1 <- read.csv("../data/PercentPosByState(post2016).csv", header=TRUE, skip = 1) 
 # percent of flu tests positive pre 2015
-PercentPos2 <- read.csv("PercentPosByState(pre2016).csv", header=TRUE, skip = 1) 
+PercentPos2 <- read.csv("../data/PercentPosByState(pre2016).csv", header=TRUE, skip = 1) 
 # 2010 population data
-PopData2010 <- read.csv("2010PopData.csv", header=TRUE)
+PopData2010 <- read.csv("../data/2010PopData.csv", header=TRUE)
 
 states <- unique(PercentPos1$REGION)
 S = length(states)-2 # don't include Virgin Islands or New York City
@@ -110,7 +110,7 @@ for (n in StartYear:EndYear) {
   }
 }
 # save to csv in case of crash
-#write.csv(data,"flu_data.csv",row.names = FALSE)
+write.csv(data,"../data/flu_data.csv",row.names = FALSE)
 
 # get temperature data by year and state
 for (n in StartYear:EndYear) {
@@ -174,11 +174,11 @@ for (n in StartYear:EndYear) {
       data$SepMaxTemp[(S)*(n-StartYear)+s] <- mean(unlist(max_temps_sep),na.rm=TRUE)-273.15
     }
   }
-  #write.csv(data,"flu_data.csv",row.names = FALSE)
+  #write.csv(data,"../data/flu_data.csv",row.names = FALSE)
 }
 
 # save to csv in case of crash
-#write.csv(data,"flu_data.csv",row.names = FALSE)
+#write.csv(data,"../data/flu_data.csv",row.names = FALSE)
 
 # get max relative humidity data by year and state
 for (n in StartYear:EndYear) {
@@ -241,7 +241,7 @@ for (n in StartYear:EndYear) {
       data$AugMaxRelHum[(S)*(n-StartYear)+s] <- mean(unlist(max_rhum_aug),na.rm=TRUE)
       data$SepMaxRelHum[(S)*(n-StartYear)+s] <- mean(unlist(max_rhum_sep),na.rm=TRUE)
     }
-    #write.csv(data,"flu_data.csv",row.names = FALSE)
+    #write.csv(data,"../data/flu_data.csv",row.names = FALSE)
   }
 }
 
@@ -306,7 +306,7 @@ for (n in StartYear:EndYear) {
       data$AugMinRelHum[(S)*(n-StartYear)+s] <- mean(unlist(min_rhum_aug),na.rm=TRUE)
       data$SepMinRelHum[(S)*(n-StartYear)+s] <- mean(unlist(min_rhum_sep),na.rm=TRUE)
     }
-    #write.csv(data,"flu_data.csv",row.names = FALSE)
+    #write.csv(data,"../data/flu_data.csv",row.names = FALSE)
   }
 }
 
@@ -371,24 +371,22 @@ for (n in StartYear:EndYear) {
       data$AugMeanAbsHum[(S)*(n-StartYear)+s] <- mean(unlist(mean_ahum_aug),na.rm=TRUE)
       data$SepMeanAbsHum[(S)*(n-StartYear)+s] <- mean(unlist(mean_ahum_sep),na.rm=TRUE)
     }
-    #write.csv(data,"flu_data.csv",row.names = FALSE)
+    #write.csv(data,"../data/flu_data.csv",row.names = FALSE)
   }
 }
 
 # get census data by year and state
 for (n in StartYear:EndYear) {
   for (s in 1:(S)) {
-    acs_data_n <- get_acs(geography = "state", variables = c("B01001_002","B01001_003","B01001_004","B01001_005",
-                                                             "B01001_006","B01001_007","B01001_026","B01001_027",
-                                                             "B01001_028","B01001_029","B01001_030","B01001_031"), 
-                          state = states[s], year=n)
-    total_pop <-acs_data_n$estimate[1]+acs_data_n$estimate[7]
-    under_18 <- sum(acs_data_n$estimate[2:5])+sum(acs_data_n$estimate[8:11])
+    acs_data_n <- get_acs(geography = "state", variables = c("S0101_C01_001","S0101_C01_022"), 
+                          state = states[s], year=n, survey = 'acs1')
+    total_pop <- acs_data_n$estimate[1]
+    under_18 <- acs_data_n$estimate[2]
     data$Under18[(S)*(n-StartYear)+s] = under_18/total_pop
     data$PopDensity[(S)*(n-StartYear)+s] = total_pop/state_areas[s]
   }
 }
-#write.csv(data,"flu_data.csv",row.names = FALSE)
+#write.csv(data,"../data/flu_data.csv",row.names = FALSE)
 
 # create csv with log(ILI+) for each week for each year and state
 LogILIplus <- data.frame(Year = rep(0, N*S),
@@ -418,7 +416,7 @@ for (n in StartYear:EndYear) {
   }
 }
 # (2) since this is the second method of dealing with zeros (i.e. set them to the minimum value)
-write.csv(LogILIplus,"log_ILIplus(2).csv",row.names = FALSE)
+write.csv(LogILIplus,"../data/log_ILIplus(2).csv",row.names = FALSE)
 
 
 # fit and plot data by year and state
@@ -518,7 +516,7 @@ for (n in StartYear:EndYear) {
     }
   }
 }
-#write.csv(data,"flu_data(2).csv",row.names = FALSE)
+#write.csv(data,"../data/flu_data(2).csv",row.names = FALSE)
 
 # just fit and plot data by year and state, doesn't update data
 for (n in StartYear:EndYear) {
