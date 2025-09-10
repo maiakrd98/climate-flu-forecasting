@@ -9,5 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Data
+Climate data is from [gridMET](https://www.climatologylab.org/gridmet.html), which reports various climate variables at a 4km x 4km resolution. The ones we used are daily maximum temperature, daily maximum relative humidity, daily minimum relative humidity, and daily mean specific humidity. 
 
+Population data is from the state level [American Community Survey](https://www.census.gov/data/developers/data-sets/acs-1year.html) 1-year data from the US Census Bureau. We used the total population and population under 18 for each year and state.
+
+Influenza like illness (ILI) and percent positive data is from the [CDC](https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html). 
